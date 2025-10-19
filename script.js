@@ -1186,7 +1186,7 @@ javascript: (function () {
             right: "5px",
             width: "2px",
             height: "2px",
-            background: "#ff0000ff",
+           background: "#424242ff",
             borderRadius: "50%",
             zIndex: "9999",
           });
