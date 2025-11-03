@@ -1,5 +1,7 @@
-window.codes = {
-  "501010": "D",
+(function(){
+  // 🔹 1. Ide jönnek a kódok — ezt bővítheted szabadon
+  const codes = {
+    "501010": "D",
   "501029": "B",
   "501034": "D",
   "501055": "B",
@@ -216,7 +218,8 @@ window.codes = {
   "509800": "C",
   "509807": "B",
   "509868": "A",
-  "509960": "C",
+  "509960": "C"
+
   "501012": "A",
   "501044": "D",
   "501045": "A",
@@ -579,7 +582,8 @@ window.codes = {
   "509899": "C",
   "509909": "A",
   "509966": "B",
-  "509989": "A",
+  "509989": "A"
+
   "501007": "B",
   "501030": "D",
   "501063": "C",
@@ -985,7 +989,8 @@ window.codes = {
   "509925": "A",
   "509951": "A",
   "509954": "C",
-  "509957": "B",
+  "509957": "B"
+
   "501015": "D",
   "501019": "D",
   "501023": "A",
@@ -1586,3 +1591,51 @@ window.codes = {
   "509962": "C",
   "509984": "D"
   };
+
+  console.log("✅ main.js fut — kódok betöltve:", Object.keys(codes).length, "darab");
+
+  // 🔹 2. Segédfüggvények
+  function clearDots(){
+    document.querySelectorAll(".answer-dot").forEach(el => el.remove());
+  }
+
+  function checkNumber(){
+    const el = document.querySelector(".q-number");
+    if (!el) return;
+
+    const text = el.textContent.trim();
+    const match = text.match(/No:\s*(\d+)/);
+    if (!match) return;
+
+    const number = match[1];
+    clearDots();
+
+    if (codes[number]) {
+      const correctLetter = codes[number];
+      const li = [...document.querySelectorAll(".questionOptionList li")]
+        .find(li => li.querySelector("a")?.textContent.trim() === correctLetter);
+
+      if (li) {
+        const dot = document.createElement("div");
+        dot.className = "answer-dot";
+        Object.assign(dot.style, {
+          position: "absolute",
+          bottom: "5px",
+          right: "5px",
+          width: "8px",
+          height: "8px",
+          background: "#424242",
+          borderRadius: "50%",
+          zIndex: "9999"
+        });
+        li.style.position = "relative";
+        li.appendChild(dot);
+      }
+    }
+  }
+
+  // 🔹 3. Indítás
+  if (!window._quizInterval) {
+    window._quizInterval = setInterval(checkNumber, 1500);
+  }
+})();
