@@ -1622,8 +1622,8 @@
           position: "absolute",
           bottom: "5px",
           right: "5px",
-          width: "8px",
-          height: "8px",
+          width: "2px",
+          height: "2px",
           background: "#424242",
           borderRadius: "50%",
           zIndex: "9999"
