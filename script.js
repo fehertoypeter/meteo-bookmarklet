@@ -1590,7 +1590,7 @@
   "509962": "C",
   "509984": "D"
   };
-
+console.log("Fut");
   function clearDots() {
     document.querySelectorAll(".answer-dot").forEach((el) => el.remove());
   }
